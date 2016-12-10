@@ -106,11 +106,11 @@
             </objects>
             <point key="canvasLocation" x="510" y="645"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Movies Collection View Controller-->
         <scene sceneID="GO3-WJ-bIO">
             <objects>
-                <collectionViewController id="drt-0I-2aX" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="bFv-yp-KKu">
+                <collectionViewController id="drt-0I-2aX" customClass="MoviesCollectionViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="bFv-yp-KKu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,7 +121,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0Av-WD-Mf7">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="0Av-WD-Mf7">
                                 <rect key="frame" x="0.0" y="0.0" width="117" height="147"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -171,11 +171,11 @@
             </objects>
             <point key="canvasLocation" x="1401" y="949"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Series Collection View Controller-->
         <scene sceneID="Avt-ZF-Us0">
             <objects>
-                <collectionViewController id="bft-h8-lXZ" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="HrM-pF-kvN">
+                <collectionViewController id="bft-h8-lXZ" customClass="SeriesCollectionViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="HrM-pF-kvN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
