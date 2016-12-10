@@ -23,6 +23,7 @@
 		3C756D061DDD1AED00E7296C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C756D051DDD1AED00E7296C /* LoginViewController.swift */; };
 		3CE698B31DFB69D10063C313 /* MoviesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE698B21DFB69D10063C313 /* MoviesCollectionViewController.swift */; };
 		3CE698B51DFB69E30063C313 /* SeriesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE698B41DFB69E30063C313 /* SeriesCollectionViewController.swift */; };
+		3CE698B71DFB6C070063C313 /* MoviesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE698B61DFB6C070063C313 /* MoviesCollectionViewCell.swift */; };
 		3CEE00051DDA826900CE54B8 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE00031DDA826900CE54B8 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		3C756D051DDD1AED00E7296C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3CE698B21DFB69D10063C313 /* MoviesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewController.swift; sourceTree = "<group>"; };
 		3CE698B41DFB69E30063C313 /* SeriesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesCollectionViewController.swift; sourceTree = "<group>"; };
+		3CE698B61DFB6C070063C313 /* MoviesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewCell.swift; sourceTree = "<group>"; };
 		3CEE00041DDA826900CE54B8 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				3C35999C1DDA64D3004F2093 /* Main.storyboard */,
+				3CE698B61DFB6C070063C313 /* MoviesCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				3C756D021DDD0EB000E7296C /* Movie+CoreDataProperties.swift in Sources */,
 				3C3599991DDA64D3004F2093 /* AppDelegate.swift in Sources */,
 				3C756D041DDD0EB000E7296C /* Location+CoreDataProperties.swift in Sources */,
+				3CE698B71DFB6C070063C313 /* MoviesCollectionViewCell.swift in Sources */,
 				3C3599AF1DDA68F8004F2093 /* SwiftyJSON.swift in Sources */,
 				3C756D031DDD0EB000E7296C /* Location+CoreDataClass.swift in Sources */,
 				3C756D061DDD1AED00E7296C /* LoginViewController.swift in Sources */,
