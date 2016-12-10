@@ -30,6 +30,9 @@ class LoginViewController: UIViewController {
                     print ("num of results = \(searchResults)")
                     if !searchResults.isEmpty {
                         print("Exist")
+                        let userDefaults = Foundation.UserDefaults.standard
+                        userDefaults.set( textUser, forKey: "userName")
+                        goToCollectionViewTabController();
                     }else {
                         displayAlertMessage(userMessage: "Not exist user");
                     }
@@ -67,6 +70,11 @@ class LoginViewController: UIViewController {
         }
         CoreDataManager.sharedInstance.saveContext()
         
+        let defaults = UserDefaults.standard
+        if (defaults.string(forKey: "userName") != nil) {
+            goToCollectionViewTabController();
+        }
+        
 
         
     }
@@ -96,6 +104,10 @@ class LoginViewController: UIViewController {
         self.present(alertMessage, animated: true, completion: nil)
         //self.presentViewController(alertMessage, animated: true, completion: nil)
     }
-
+    func goToCollectionViewTabController(){
+        let storyboard = UIStoryboard(name: "Main.storyboard", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "MoviesCollectionViewController") as! UIViewController
+        self.present(controller, animated: true, completion: nil)
+    }
 
 }
