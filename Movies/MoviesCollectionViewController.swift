@@ -12,7 +12,7 @@ private let reuseIdentifier = "Cell"
 
 class MoviesCollectionViewController: UICollectionViewController {
     
-    //var use: User
+    var user: User?
     var movies: [Movie]?
 
     override func viewDidLoad() {
