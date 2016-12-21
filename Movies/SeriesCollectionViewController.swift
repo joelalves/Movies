@@ -17,7 +17,7 @@ class SeriesCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        OmdbManager.trendingMovies { (series) in
+        OmdbManager.trendingSeries { (series) in
             self.series = series
             self.collectionView?.reloadData()
         }
@@ -50,19 +50,47 @@ class SeriesCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return self.series?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     
         // Configure the cell
+        if let serie = self.series?[indexPath.row],
+            let cell = cell as? SeriesCollectionViewCell{
+            cell.prepareForReuse()
+            cell.titleLabel.text = serie.title
+            let urlImage:String = "https://image.tmdb.org/t/p/w154"+serie.poster!;
+            if let url = URL(string: urlImage) {
+                cell.task = URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
+                    if let data = data {
+                        //Weak para conseguirmos ter acesso a cell com uma mera referência. Se entretanto a cell desaparecer passa a nil
+                        DispatchQueue.main.async { [weak cell] in
+                            if cell?.task?.state != .canceling && cell?.task?.state != .suspended {
+                                let image = UIImage(data: data)
+                                cell?.posterImageView.image = image
+                                cell?.setNeedsLayout()
+                                cell?.layoutSubviews()
+                            } else {
+                                cell?.posterImageView.image = nil
+                            }
+                        }
+                    }
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                })
+                cell.task?.resume()
+            }
+        }
+
     
         return cell
     }
