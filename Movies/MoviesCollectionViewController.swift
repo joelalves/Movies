@@ -26,7 +26,7 @@ class MoviesCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
@@ -50,19 +50,46 @@ class MoviesCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return self.movies?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
     
         // Configure the cell
+        if let movie = self.movies?[indexPath.row],
+            let cell = cell as? MoviesCollectionViewCell{
+            cell.prepareForReuse()
+            cell.titleLabel.text = movie.title
+            let urlImage:String = "https://image.tmdb.org/t/p/w154"+movie.poster!;
+            if let url = URL(string: urlImage) {
+                cell.task = URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
+                    if let data = data {
+                        //Weak para conseguirmos ter acesso a cell com uma mera referência. Se entretanto a cell desaparecer passa a nil
+                        DispatchQueue.main.async { [weak cell] in
+                            if cell?.task?.state != .canceling && cell?.task?.state != .suspended {
+                                let image = UIImage(data: data)
+                                cell?.posterImageView.image = image
+                                cell?.setNeedsLayout()
+                                cell?.layoutSubviews()
+                            } else {
+                                cell?.posterImageView.image = nil
+                            }
+                        }
+                    }
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                })
+                cell.task?.resume()
+            }
+        }
     
         return cell
     }
