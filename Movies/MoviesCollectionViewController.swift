@@ -67,27 +67,32 @@ class MoviesCollectionViewController: UICollectionViewController {
             let cell = cell as? MoviesCollectionViewCell{
             cell.prepareForReuse()
             cell.titleLabel.text = movie.title
-            let urlImage:String = "https://image.tmdb.org/t/p/w154"+movie.poster!;
-            if let url = URL(string: urlImage) {
-                cell.task = URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
-                    if let data = data {
-                        //Weak para conseguirmos ter acesso a cell com uma mera referência. Se entretanto a cell desaparecer passa a nil
-                        DispatchQueue.main.async { [weak cell] in
-                            if cell?.task?.state != .canceling && cell?.task?.state != .suspended {
-                                let image = UIImage(data: data)
-                                cell?.posterImageView.image = image
-                                cell?.setNeedsLayout()
-                                cell?.layoutSubviews()
-                            } else {
-                                cell?.posterImageView.image = nil
+            print(movie.id!)
+            if movie.id != nil {
+                print("not nil")
+                FanartManager.images(for: movie.id!, completion: { (movieImage) in
+                    if let url = URL(string: movieImage.preview) {
+                        cell.task = URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
+                            if let data = data {
+                                //Weak para conseguirmos ter acesso a cell com uma mera referência. Se entretanto a cell desaparecer passa a nil
+                                DispatchQueue.main.async { [weak cell] in
+                                    if cell?.task?.state != .canceling && cell?.task?.state != .suspended {
+                                        let image = UIImage(data: data)
+                                        cell?.posterImageView.image = image
+                                        cell?.setNeedsLayout()
+                                        cell?.layoutSubviews()
+                                    } else {
+                                        cell?.posterImageView.image = nil
+                                    }
+                                }
                             }
-                        }
-                    }
-                    if let error = error {
-                        print(error.localizedDescription)
+                            if let error = error {
+                                print(error.localizedDescription)
+                            }
+                        })
+                        cell.task?.resume()
                     }
                 })
-                cell.task?.resume()
             }
         }
     

@@ -47,10 +47,11 @@ class OmdbManager{
                     }).filter({ $0 != nil }) as? [Movie] {
                         completion(movies)
                     }
-                    CoreDataManager.sharedInstance.saveContext()
+                   
                 }
             }.resume()
         }
+         CoreDataManager.sharedInstance.saveContext()
     }
     
     static func trendingSeries(completion: @escaping ([Movie])->()) {
@@ -61,8 +62,6 @@ class OmdbManager{
                 if let data = data {
                     let json = JSON(data: data)
                     if let movies = json["results"].array?.map({ (item) -> Movie? in
-                        print(item)
-                        print("----------------------------------")
                         if let id = item["id"].stringValue as String?,
                             let title = item["name"].stringValue as String?,
                             let overview = item["overview"].stringValue as String?,
@@ -92,10 +91,11 @@ class OmdbManager{
                     }).filter({ $0 != nil }) as? [Movie] {
                         completion(movies)
                     }
-                    CoreDataManager.sharedInstance.saveContext()
+                    
                 }
-                }.resume()
+            }.resume()
         }
+        CoreDataManager.sharedInstance.saveContext()
     }
 
 }
