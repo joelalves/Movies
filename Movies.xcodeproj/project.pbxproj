@@ -14,6 +14,8 @@
 		3C3599AF1DDA68F8004F2093 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3599AE1DDA68F8004F2093 /* SwiftyJSON.swift */; };
 		3C3599B71DDA6BC0004F2093 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3599B61DDA6BC0004F2093 /* CoreDataManager.swift */; };
 		3C3C95881E0A23B700AFAD51 /* SeriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C95871E0A23B700AFAD51 /* SeriesCollectionViewCell.swift */; };
+		3C3C958A1E0B47A700AFAD51 /* FanartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C95891E0B47A700AFAD51 /* FanartManager.swift */; };
+		3C3C958C1E0B47DC00AFAD51 /* MovieImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C958B1E0B47DC00AFAD51 /* MovieImage.swift */; };
 		3C756CFF1DDD0EB000E7296C /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C756CF91DDD0EB000E7296C /* User+CoreDataClass.swift */; };
 		3C756D001DDD0EB000E7296C /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C756CFA1DDD0EB000E7296C /* User+CoreDataProperties.swift */; };
 		3C756D011DDD0EB000E7296C /* Movie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C756CFB1DDD0EB000E7296C /* Movie+CoreDataClass.swift */; };
@@ -38,6 +40,8 @@
 		3C3599AE1DDA68F8004F2093 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		3C3599B61DDA6BC0004F2093 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3C3C95871E0A23B700AFAD51 /* SeriesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		3C3C95891E0B47A700AFAD51 /* FanartManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanartManager.swift; sourceTree = "<group>"; };
+		3C3C958B1E0B47DC00AFAD51 /* MovieImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieImage.swift; sourceTree = "<group>"; };
 		3C756CF91DDD0EB000E7296C /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "../User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3C756CFA1DDD0EB000E7296C /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3C756CFB1DDD0EB000E7296C /* Movie+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Movie+CoreDataClass.swift"; path = "../Movie+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 			children = (
 				3C3599AE1DDA68F8004F2093 /* SwiftyJSON.swift */,
 				3CE698CB1DFC4E3C0063C313 /* OmdbManager.swift */,
+				3C3C95891E0B47A700AFAD51 /* FanartManager.swift */,
+				3C3C958B1E0B47DC00AFAD51 /* MovieImage.swift */,
 			);
 			name = External;
 			sourceTree = "<group>";
@@ -223,11 +229,13 @@
 				3C756D001DDD0EB000E7296C /* User+CoreDataProperties.swift in Sources */,
 				3CE698B31DFB69D10063C313 /* MoviesCollectionViewController.swift in Sources */,
 				3CEE00051DDA826900CE54B8 /* Model.xcdatamodeld in Sources */,
+				3C3C958C1E0B47DC00AFAD51 /* MovieImage.swift in Sources */,
 				3C756D011DDD0EB000E7296C /* Movie+CoreDataClass.swift in Sources */,
 				3C756D021DDD0EB000E7296C /* Movie+CoreDataProperties.swift in Sources */,
 				3C3599991DDA64D3004F2093 /* AppDelegate.swift in Sources */,
 				3C756D041DDD0EB000E7296C /* Location+CoreDataProperties.swift in Sources */,
 				3CE698CC1DFC4E3C0063C313 /* OmdbManager.swift in Sources */,
+				3C3C958A1E0B47A700AFAD51 /* FanartManager.swift in Sources */,
 				3CE698B71DFB6C070063C313 /* MoviesCollectionViewCell.swift in Sources */,
 				3C3599AF1DDA68F8004F2093 /* SwiftyJSON.swift in Sources */,
 				3C3C95881E0A23B700AFAD51 /* SeriesCollectionViewCell.swift in Sources */,
