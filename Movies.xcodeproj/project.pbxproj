@@ -16,6 +16,8 @@
 		3C3C95881E0A23B700AFAD51 /* SeriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C95871E0A23B700AFAD51 /* SeriesCollectionViewCell.swift */; };
 		3C3C958A1E0B47A700AFAD51 /* FanartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C95891E0B47A700AFAD51 /* FanartManager.swift */; };
 		3C3C958C1E0B47DC00AFAD51 /* MovieImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C958B1E0B47DC00AFAD51 /* MovieImage.swift */; };
+		3C3C95901E0B586800AFAD51 /* MysCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C958F1E0B586800AFAD51 /* MysCollectionViewCell.swift */; };
+		3C3C95921E0B589B00AFAD51 /* MysCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3C95911E0B589B00AFAD51 /* MysCollectionViewController.swift */; };
 		3C756CFF1DDD0EB000E7296C /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C756CF91DDD0EB000E7296C /* User+CoreDataClass.swift */; };
 		3C756D001DDD0EB000E7296C /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C756CFA1DDD0EB000E7296C /* User+CoreDataProperties.swift */; };
 		3C756D011DDD0EB000E7296C /* Movie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C756CFB1DDD0EB000E7296C /* Movie+CoreDataClass.swift */; };
@@ -42,6 +44,8 @@
 		3C3C95871E0A23B700AFAD51 /* SeriesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		3C3C95891E0B47A700AFAD51 /* FanartManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FanartManager.swift; sourceTree = "<group>"; };
 		3C3C958B1E0B47DC00AFAD51 /* MovieImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieImage.swift; sourceTree = "<group>"; };
+		3C3C958F1E0B586800AFAD51 /* MysCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MysCollectionViewCell.swift; sourceTree = "<group>"; };
+		3C3C95911E0B589B00AFAD51 /* MysCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MysCollectionViewController.swift; sourceTree = "<group>"; };
 		3C756CF91DDD0EB000E7296C /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "../User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3C756CFA1DDD0EB000E7296C /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3C756CFB1DDD0EB000E7296C /* Movie+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Movie+CoreDataClass.swift"; path = "../Movie+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 				3C756D051DDD1AED00E7296C /* LoginViewController.swift */,
 				3CE698B21DFB69D10063C313 /* MoviesCollectionViewController.swift */,
 				3CE698B41DFB69E30063C313 /* SeriesCollectionViewController.swift */,
+				3C3C95911E0B589B00AFAD51 /* MysCollectionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -127,6 +132,7 @@
 				3C35999C1DDA64D3004F2093 /* Main.storyboard */,
 				3CE698B61DFB6C070063C313 /* MoviesCollectionViewCell.swift */,
 				3C3C95871E0A23B700AFAD51 /* SeriesCollectionViewCell.swift */,
+				3C3C958F1E0B586800AFAD51 /* MysCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -229,7 +235,9 @@
 				3C756D001DDD0EB000E7296C /* User+CoreDataProperties.swift in Sources */,
 				3CE698B31DFB69D10063C313 /* MoviesCollectionViewController.swift in Sources */,
 				3CEE00051DDA826900CE54B8 /* Model.xcdatamodeld in Sources */,
+				3C3C95921E0B589B00AFAD51 /* MysCollectionViewController.swift in Sources */,
 				3C3C958C1E0B47DC00AFAD51 /* MovieImage.swift in Sources */,
+				3C3C95901E0B586800AFAD51 /* MysCollectionViewCell.swift in Sources */,
 				3C756D011DDD0EB000E7296C /* Movie+CoreDataClass.swift in Sources */,
 				3C756D021DDD0EB000E7296C /* Movie+CoreDataProperties.swift in Sources */,
 				3C3599991DDA64D3004F2093 /* AppDelegate.swift in Sources */,
