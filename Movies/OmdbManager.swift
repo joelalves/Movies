@@ -48,11 +48,11 @@ class OmdbManager{
                     }).filter({ $0 != nil }) as? [Movie] {
                         completion()
                     }
-                   
+                   CoreDataManager.sharedInstance.saveContext()
                 }
             }.resume()
         }
-         CoreDataManager.sharedInstance.saveContext()
+        
     }
     
     static func trendingSeries(completion: @escaping ()->()) {
@@ -94,11 +94,11 @@ class OmdbManager{
                     }).filter({ $0 != nil }) as? [Movie] {
                         completion()
                     }
-                    
+                    CoreDataManager.sharedInstance.saveContext()
                 }
             }.resume()
         }
-        CoreDataManager.sharedInstance.saveContext()
+        
     }
     
     static func existElement(movieID:String) -> (Bool) {

@@ -30,9 +30,19 @@ class DataStore{
        return nil
     }*/
     func getMovies(pedacoDeCodigoParaExecutarQuandoTiveresOsClientes: @escaping ([Movie]?)->()){
-        let usersFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
-        
-        if let searchResults = try? objectContext.fetch(usersFetch) {
+        let moviesFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
+        moviesFetch.predicate = NSPredicate(format: "type == %@", "movie")
+        if let searchResults = try? objectContext.fetch(moviesFetch) {
+            //I like to check the size of the returned results!
+            if !searchResults.isEmpty {
+                pedacoDeCodigoParaExecutarQuandoTiveresOsClientes(searchResults)
+            }
+        }
+    }
+    func getSeries(pedacoDeCodigoParaExecutarQuandoTiveresOsClientes: @escaping ([Movie]?)->()){
+        let moviesFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
+        moviesFetch.predicate = NSPredicate(format: "type == %@", "tv")
+        if let searchResults = try? objectContext.fetch(moviesFetch) {
             //I like to check the size of the returned results!
             if !searchResults.isEmpty {
                 pedacoDeCodigoParaExecutarQuandoTiveresOsClientes(searchResults)
@@ -48,5 +58,22 @@ class DataStore{
             
         }
     }
-    
+    func removeAllMovie(){
+        
+        let usersFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
+        
+        if let searchResults = try? objectContext.fetch(usersFetch) {
+            //I like to check the size of the returned results!
+            for object in searchResults {
+                objectContext.delete(object)
+            }
+            do {
+                try objectContext.save()
+            } catch let error as NSError {
+                print("Error While Deleting Note: \(error.userInfo)")
+                
+            }
+        }
+
+    }
 }

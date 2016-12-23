@@ -24,7 +24,10 @@ class SectionsData {
             let movies = Section(title: "Movies", objects: movies!)
             sectionsArray.append(movies)
         }
-       
+        DataStore.sharedInstance.getSeries { (movies) in
+            let movies = Section(title: "Series", objects: movies!)
+            sectionsArray.append(movies)
+        }
        //let movies = Section(title: "Movies", objects: moviesArray)
        // let series = Section(title: "Series", objects: ["Cars", "Boats", "Planes", "Motorcycles", "Trucks"])
         
