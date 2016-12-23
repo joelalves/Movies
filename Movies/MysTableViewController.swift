@@ -97,9 +97,14 @@ class MysTableViewController: UITableViewController {
         if editingStyle == .delete {
             print("apagar")
             // Delete the row from the data source
-            //tableView.deleteRows(at: [indexPath], with: .fade)
-            self.movies?.remove(at: indexPath.row)
-            self.reloadData()
+
+            if let movie = sections[indexPath.section].items[indexPath.row] as Movie?{
+                DataStore.sharedInstance.removeMovie(object: movie);
+                self.sections[indexPath.section].delete(at: indexPath.row)
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            //self.reloadData()
+            
         }
     }
     

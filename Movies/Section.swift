@@ -18,4 +18,7 @@ struct Section {
         heading = title
         items = objects
     }
+    mutating func delete(at: Int){
+        self.items.remove(at: at)
+    }
 }

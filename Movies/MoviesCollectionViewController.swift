@@ -31,9 +31,9 @@ class MoviesCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        OmdbManager.trendingMovies { () in
+        /*OmdbManager.trendingMovies { () in
             self.collectionView?.reloadData()
-        }
+        }*/
         
         self.reloadData();
         // Uncomment the following line to preserve selection between presentations
