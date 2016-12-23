@@ -14,6 +14,19 @@ class MoviesCollectionViewController: UICollectionViewController {
     
     var user: User?
     var movies: [Movie]?
+    @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
+        print("long press")
+        let point = sender.location(in: self.collectionView)
+        if let indexPath = self.collectionView?.indexPathForItem(at: point),
+            let cell = self.collectionView?.cellForItem(at: indexPath) as? MoviesCollectionViewCell,
+            let movie = self.movies?[indexPath.row]{
+            cell.shake()
+            let alert = UIAlertController(title: "Oi!", message: "Aqui está o filme \(movie.title)", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+
+    }
  
     override func viewDidLoad() {
         super.viewDidLoad()
