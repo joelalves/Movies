@@ -57,6 +57,7 @@
 		3C756CFD1DDD0EB000E7296C /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Location+CoreDataClass.swift"; path = "../Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3C756CFE1DDD0EB000E7296C /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3C756D051DDD1AED00E7296C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3CCBA70D1E0D97BF00626380 /* Model 1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 1.2.xcdatamodel"; sourceTree = "<group>"; };
 		3CE698B21DFB69D10063C313 /* MoviesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewController.swift; sourceTree = "<group>"; };
 		3CE698B41DFB69E30063C313 /* SeriesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesCollectionViewController.swift; sourceTree = "<group>"; };
 		3CE698B61DFB6C070063C313 /* MoviesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -426,9 +427,10 @@
 		3CEE00031DDA826900CE54B8 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				3CCBA70D1E0D97BF00626380 /* Model 1.2.xcdatamodel */,
 				3CEE00041DDA826900CE54B8 /* Model.xcdatamodel */,
 			);
-			currentVersion = 3CEE00041DDA826900CE54B8 /* Model.xcdatamodel */;
+			currentVersion = 3CCBA70D1E0D97BF00626380 /* Model 1.2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -31,10 +31,14 @@ class MoviesCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*OmdbManager.trendingMovies { () in
-            self.collectionView?.reloadData()
-        }*/
+        OmdbManager.trendingMovies { () in
+            self.reloadData()
+        }
         
+        //DataStore.sharedInstance.removeAllMovie()
+        
+        self.collectionView?.refreshControl = UIRefreshControl()
+        self.collectionView?.refreshControl?.addTarget(self, action: #selector(self.reloadData), for: .valueChanged)
         self.reloadData();
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -44,11 +48,23 @@ class MoviesCollectionViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let refreshControl = self.collectionView?.refreshControl, refreshControl.isRefreshing {
+            self.collectionView?.contentOffset = CGPoint(x: 0, y: -refreshControl.frame.size.height)
+        }
+        
+    }
+
     func reloadData() {
+        self.collectionView?.refreshControl?.beginRefreshing()
         DataStore.sharedInstance.getMovies { (movies) in
+            self.collectionView?.refreshControl?.endRefreshing()
             self.movies = movies
             self.collectionView?.reloadData()
         }
+        
     }
 
 
@@ -118,6 +134,16 @@ class MoviesCollectionViewController: UICollectionViewController {
         }
     
         return cell
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY > contentHeight - scrollView.frame.size.height {
+            //loadSomeDataAndIncreaseDataLengthFunction()
+            //self.reloadData()
+            print("next page")
+        }
     }
 
     // MARK: UICollectionViewDelegate
