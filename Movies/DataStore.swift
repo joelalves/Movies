@@ -12,6 +12,7 @@ import CoreData
 class DataStore{
     static let sharedInstance: DataStore = DataStore()
     let objectContext = CoreDataManager.sharedInstance.managedObjectContext
+    
     private init() {
         
     }
@@ -30,6 +31,7 @@ class DataStore{
     }*/
     func getMovies(pedacoDeCodigoParaExecutarQuandoTiveresOsClientes: @escaping ([Movie]?)->()){
         let usersFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
+        
         if let searchResults = try? objectContext.fetch(usersFetch) {
             //I like to check the size of the returned results!
             if !searchResults.isEmpty {
@@ -37,4 +39,14 @@ class DataStore{
             }
         }
     }
+    func removeMovie(object: Movie){
+        objectContext.delete(object)
+        do {
+            try objectContext.save()
+        } catch let error as NSError {
+            print("Error While Deleting Note: \(error.userInfo)")
+            
+        }
+    }
+    
 }

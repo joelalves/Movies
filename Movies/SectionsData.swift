@@ -19,34 +19,20 @@ class SectionsData {
         
         var sectionsArray = [Section]()
         
-        let moviesArray = getMovies()
-        print("moviesArray")
-        print(moviesArray.count)
-       let movies = Section(title: "Movies", objects: moviesArray)
+        
+        DataStore.sharedInstance.getMovies { (movies) in
+            let movies = Section(title: "Movies", objects: movies!)
+            sectionsArray.append(movies)
+        }
+       
+       //let movies = Section(title: "Movies", objects: moviesArray)
        // let series = Section(title: "Series", objects: ["Cars", "Boats", "Planes", "Motorcycles", "Trucks"])
         
         
-       sectionsArray.append(movies)
+       //sectionsArray.append(movies)
        // sectionsArray.append(series)
         
         return sectionsArray
     }
     
-    func getMovies() ->[Movie] {
-        let usersFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
-        do {
-            //go get the results
-            if let searchResults = try? objectContext.fetch(usersFetch) {
-                //I like to check the size of the returned results!
-                if !searchResults.isEmpty {
-                    return searchResults
-                } else {
-                    return []
-                }
-            }
-        } catch {
-            print("Error with request: \(error)")
-        }
-        return []
-    }
 }
