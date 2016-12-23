@@ -11,7 +11,7 @@ import CoreData
 class OmdbManager{
     private static let apiKey: String = "12443753391299fdc9235cf835a55188"
     
-    static func trendingMovies(completion: @escaping ([Movie])->()) {
+    static func trendingMovies(completion: @escaping ()->()) {
         print("#VamosMovies")
         if let url = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key="+apiKey+"&language=en-US&sort_by=popularity.desc") {
             let request = URLRequest(url: url)
@@ -30,8 +30,9 @@ class OmdbManager{
                                 let dateFormatter = DateFormatter()
                                 dateFormatter.dateFormat = "yyyy-MM-dd"
                                 let date = dateFormatter.date(from:released)
-                            
-                                if let movie = CoreDataManager.newObject(entityName: "Movie") as? Movie {
+                        
+                            if self.existElement(movieID: id),
+                                    let movie = CoreDataManager.newObject(entityName: "Movie") as? Movie {
                                     movie.id = id
                                     movie.title = title
                                     movie.released = date as NSDate?
@@ -40,12 +41,11 @@ class OmdbManager{
                                     movie.poster = poster_path
                                     movie.year = year
                                     return movie
-                                }
-                            
+                            }
                         }
                         return nil
                     }).filter({ $0 != nil }) as? [Movie] {
-                        completion(movies)
+                        completion()
                     }
                    
                 }
@@ -54,7 +54,7 @@ class OmdbManager{
          CoreDataManager.sharedInstance.saveContext()
     }
     
-    static func trendingSeries(completion: @escaping ([Movie])->()) {
+    static func trendingSeries(completion: @escaping ()->()) {
         print("#VamosSeries")
         if let url = URL(string: "https://api.themoviedb.org/3/discover/tv?api_key="+apiKey+"&language=en-US&sort_by=popularity.desc") {
             let request = URLRequest(url: url)
@@ -74,7 +74,8 @@ class OmdbManager{
                             dateFormatter.dateFormat = "yyyy-MM-dd"
                             let date = dateFormatter.date(from:released)
                             
-                            if let movie = CoreDataManager.newObject(entityName: "Movie") as? Movie {
+                            if self.existElement(movieID: id),
+                                let movie = CoreDataManager.newObject(entityName: "Movie") as? Movie {
                                
                                 movie.id = id
                                 movie.title = title
@@ -89,13 +90,35 @@ class OmdbManager{
                         }
                         return nil
                     }).filter({ $0 != nil }) as? [Movie] {
-                        completion(movies)
+                        completion()
                     }
                     
                 }
             }.resume()
         }
         CoreDataManager.sharedInstance.saveContext()
+    }
+    
+    static func existElement(movieID:String) -> (Bool) {
+        let usersFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
+        do {
+            usersFetch.predicate = NSPredicate(format: "id == %@", movieID)
+            
+            //go get the results
+            if let searchResults = try? CoreDataManager.sharedInstance.managedObjectContext.fetch(usersFetch) {
+                //I like to check the size of the returned results!
+                if searchResults.isEmpty {
+                    print("Cria")
+                    return (true)
+                } else {
+                     print("exist")
+                    return (false)
+                }
+            }
+        } catch {
+            print("Error with request: \(error)")
+        }
+        return (false)
     }
 
 }

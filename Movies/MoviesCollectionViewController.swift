@@ -14,14 +14,15 @@ class MoviesCollectionViewController: UICollectionViewController {
     
     var user: User?
     var movies: [Movie]?
-
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
-       OmdbManager.trendingMovies { (movies) in
-            self.movies = movies
+        
+        OmdbManager.trendingMovies { () in
             self.collectionView?.reloadData()
         }
-
+        
+        self.reloadData();
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -30,6 +31,13 @@ class MoviesCollectionViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
     }
+    func reloadData() {
+        DataStore.sharedInstance.getMovies { (movies) in
+            self.movies = movies
+            self.collectionView?.reloadData()
+        }
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

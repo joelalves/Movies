@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class SectionsData {
     let objectContext = CoreDataManager.sharedInstance.managedObjectContext;
@@ -18,13 +19,34 @@ class SectionsData {
         
         var sectionsArray = [Section]()
         
-        //let movies = Section(title: "Animals", objects: ["Cats", "Dogs", "Birds", "Lions"])
-        //let series = Section(title: "Vehicles", objects: ["Cars", "Boats", "Planes", "Motorcycles", "Trucks"])
+        let moviesArray = getMovies()
+        print("moviesArray")
+        print(moviesArray.count)
+       let movies = Section(title: "Movies", objects: moviesArray)
+       // let series = Section(title: "Series", objects: ["Cars", "Boats", "Planes", "Motorcycles", "Trucks"])
         
         
-        //sectionsArray.append(animals)
-        //sectionsArray.append(vehicles)
+       sectionsArray.append(movies)
+       // sectionsArray.append(series)
         
         return sectionsArray
+    }
+    
+    func getMovies() ->[Movie] {
+        let usersFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
+        do {
+            //go get the results
+            if let searchResults = try? objectContext.fetch(usersFetch) {
+                //I like to check the size of the returned results!
+                if !searchResults.isEmpty {
+                    return searchResults
+                } else {
+                    return []
+                }
+            }
+        } catch {
+            print("Error with request: \(error)")
+        }
+        return []
     }
 }
