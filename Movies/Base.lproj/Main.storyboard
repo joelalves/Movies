@@ -164,11 +164,13 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="8dN-Oz-RKW"/>
-                    <connections>
-                        <outletCollection property="longPressed" destination="bFv-yp-KKu" id="6kA-uT-hI9"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2yw-HO-sgP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="3wK-Bq-PoU">
+                    <connections>
+                        <action selector="longPress:" destination="drt-0I-2aX" id="6WB-uk-FnF"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2286" y="9"/>
         </scene>
