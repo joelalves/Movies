@@ -40,6 +40,7 @@ class OmdbManager{
                                     movie.imdbRating = vote_average
                                     movie.poster = poster_path
                                     movie.year = year
+                                    movie.type = "movie"
                                     return movie
                             }
                         }
@@ -84,6 +85,7 @@ class OmdbManager{
                                 movie.imdbRating = vote_average
                                 movie.poster = poster_path
                                 movie.year = year
+                                movie.type = "tv"
                                 return movie
                             }
                             
