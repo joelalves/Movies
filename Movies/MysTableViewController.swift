@@ -11,7 +11,9 @@ import UIKit
 class MysTableViewController: UITableViewController {
     
     var movies: [Movie]?
-
+    
+    var sections: [Section] = SectionsData().getSectionsFromData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,23 +33,32 @@ class MysTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return sections[section].items.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section].heading
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         // Configure the cell...
+        if let movie = sections[indexPath.section].items[indexPath.row] as Movie?,
+            movie.title != "" {
+            cell.textLabel?.text = "\(movie.title!)"
+        }
+        //cell.textLabel?.text = sections[indexPath.section].items[indexPath.row]
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
