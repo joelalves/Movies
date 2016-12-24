@@ -17,19 +17,12 @@ class MysTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.sections = SectionsData().getSectionsFromData()
-        
-        DataStore.sharedInstance.getUser { (user) in
-            self.user = user
-        }
-        print("saaaaa")
-        print(self.user?.movies?.count)
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.addTarget(self, action: #selector(self.reloadData), for: .valueChanged)
@@ -46,11 +39,15 @@ class MysTableViewController: UITableViewController {
         }
         
     }
-
     
     func reloadData() {
+        print("reloadData MysTableViewController")
         self.refreshControl?.beginRefreshing()
+        DataStore.sharedInstance.getUser { (user) in
+            self.user = user
+        }
         self.sections = SectionsData().getSectionsFromData()
+        self.tableView.reloadData()
         self.refreshControl?.endRefreshing()
        
     }

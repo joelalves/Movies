@@ -66,7 +66,6 @@ class DataStore{
             for obj in values {
                 if let movie = obj as? Movie {
                     if (movie.type == "movie") {
-                        print("add")
                         movies.append(movie)
                     }
                 }
