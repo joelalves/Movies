@@ -10,9 +10,10 @@ import UIKit
 
 class MysTableViewController: UITableViewController {
     
+    var user : User?
     var movies: [Movie]?
     
-    var sections: [Section] = SectionsData().getSectionsFromData()
+    var sections: [Section] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,11 @@ class MysTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.sections = SectionsData().getSectionsFromData()
+        
+        DataStore.sharedInstance.getUser { (user) in
+            self.user = user
+        }
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.addTarget(self, action: #selector(self.reloadData), for: .valueChanged)

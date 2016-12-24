@@ -40,21 +40,12 @@ class LoginViewController: UIViewController {
         
         let defaults = UserDefaults.standard
         if (defaults.string(forKey: "userName") != nil) {
-            print("devia ir para o tab bar controller")
-            //self.prepare(for: self, sender: <#T##Any?#>)
-            //self.performSegue(withIdentifier: "Login", sender: nil)
-            //let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Movies")
-            //self.present(viewController, animated: true, completion: nil)
-            //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            //show window
-            //appDelegate.window?.rootViewController = viewController
             
-            /*
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let view = storyboard.instantiateViewController(withIdentifier: "Movies") as UIViewController
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             //show window
-            appDelegate.window?.rootViewController = view*/
+            appDelegate.window?.rootViewController = view
         }
         
 
@@ -87,9 +78,7 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
         
         let (valLogin,user) = auth()
-        print(valLogin)
-        let t = segue.destination as? MoviesCollectionViewController
-        print(t?.description)
+        
         if valLogin,
             let moviesController = segue.destination as? MoviesCollectionViewController{
             moviesController.user = user
@@ -108,14 +97,7 @@ class LoginViewController: UIViewController {
         //self.presentViewController(alertMessage, animated: true, completion: nil)
     }
     func auth() -> (Bool, User?){
-        print("auth")
-        let defaults = UserDefaults.standard
-        if (defaults.string(forKey: "userName") != nil)
-        {
-            print("#vamosLogin")
-            return (true,nil)
-        }
-        print("#naoVamos")
+       
         if let textUser = self.inputTextUser.text,
             let textPass = self.inputTextPass.text{
             let usersFetch : NSFetchRequest<User> = User.fetchRequest()

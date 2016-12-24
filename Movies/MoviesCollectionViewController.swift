@@ -35,6 +35,10 @@ class MoviesCollectionViewController: UICollectionViewController {
             self.reloadData()
         }
         
+        DataStore.sharedInstance.getUser { (user) in
+            self.user = user
+        }
+        
         //DataStore.sharedInstance.removeAllMovie()
         
         self.collectionView?.refreshControl = UIRefreshControl()

@@ -12,7 +12,7 @@ private let reuseIdentifier = "CellSerie"
 
 class SeriesCollectionViewController: UICollectionViewController {
     
-    var use: User?
+    var user: User?
     var series: [Movie]?
 
     override func viewDidLoad() {
@@ -21,6 +21,11 @@ class SeriesCollectionViewController: UICollectionViewController {
         OmdbManager.trendingSeries { () in
             self.reloadData()
         }
+        
+        DataStore.sharedInstance.getUser { (user) in
+            self.user = user
+        }
+        
         self.collectionView?.refreshControl = UIRefreshControl()
         self.collectionView?.refreshControl?.addTarget(self, action: #selector(self.reloadData), for: .valueChanged)
         self.reloadData();
