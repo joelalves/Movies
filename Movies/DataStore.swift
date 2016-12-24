@@ -16,19 +16,7 @@ class DataStore{
     private init() {
         
     }
-    /*func getMovies()->[Movie]?{
-        let usersFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
-        if let searchResults = try? objectContext.fetch(usersFetch) {
-        //I like to check the size of the returned results!
-            if !searchResults.isEmpty {
-                print("Cria")
-                return searchResults
-            } else {
-                return nil
-            }
-        }
-       return nil
-    }*/
+    
     func getMovies(pedacoDeCodigoParaExecutarQuandoTiveresOsMovies: @escaping ([Movie]?)->()){
         let moviesFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
         moviesFetch.predicate = NSPredicate(format: "type == %@", "movie")
@@ -39,6 +27,7 @@ class DataStore{
             }
         }
     }
+    
     func getSeries(pedacoDeCodigoParaExecutarQuandoTiveresAsSeries: @escaping ([Movie]?)->()){
         let moviesFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
         moviesFetch.predicate = NSPredicate(format: "type == %@", "tv")
@@ -49,6 +38,7 @@ class DataStore{
             }
         }
     }
+    
     func getUser(pedacoDeCodigoParaExecutarQuandoTivereUser: @escaping (User?)->()){
         let defaults = UserDefaults.standard
         if (defaults.string(forKey: "userName") != nil) {
@@ -66,10 +56,11 @@ class DataStore{
             }
         }
     }
+    
     func getMoviesUser(pedacoDeCodigoParaExecutarQuandoOUserTivereMovies: @escaping ([Movie]?)->()){
        
         DataStore.sharedInstance.getUser { (user) in
-            //uuser = user!
+            
             let values = user!.movies!;
             var movies: [Movie] = []
             for obj in values {
@@ -84,6 +75,7 @@ class DataStore{
         }
         
     }
+    
     func getSeriesUser(pedacoDeCodigoParaExecutarQuandoOUserTivereSeries: @escaping ([Movie]?)->()){
         DataStore.sharedInstance.getUser { (user) in
             let values = user!.movies!;
@@ -109,6 +101,8 @@ class DataStore{
             
         }
     }
+    
+    
     func removeAllMovie(){
         
         let usersFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
