@@ -41,7 +41,6 @@ class MysTableViewController: UITableViewController {
     }
     
     func reloadData() {
-        print("reloadData MysTableViewController")
         self.refreshControl?.beginRefreshing()
         DataStore.sharedInstance.getUser { (user) in
             self.user = user
