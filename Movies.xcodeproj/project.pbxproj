@@ -111,6 +111,7 @@
 		3C3599AA1DDA64E8004F2093 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3C3C958B1E0B47DC00AFAD51 /* MovieImage.swift */,
 				3C756CF91DDD0EB000E7296C /* User+CoreDataClass.swift */,
 				3C756CFB1DDD0EB000E7296C /* Movie+CoreDataClass.swift */,
 				3C756CFD1DDD0EB000E7296C /* Location+CoreDataClass.swift */,
@@ -150,7 +151,6 @@
 				3C3599AE1DDA68F8004F2093 /* SwiftyJSON.swift */,
 				3CE698CB1DFC4E3C0063C313 /* OmdbManager.swift */,
 				3C3C95891E0B47A700AFAD51 /* FanartManager.swift */,
-				3C3C958B1E0B47DC00AFAD51 /* MovieImage.swift */,
 			);
 			name = External;
 			sourceTree = "<group>";

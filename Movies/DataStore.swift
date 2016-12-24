@@ -29,27 +29,27 @@ class DataStore{
         }
        return nil
     }*/
-    func getMovies(pedacoDeCodigoParaExecutarQuandoTiveresOsClientes: @escaping ([Movie]?)->()){
+    func getMovies(pedacoDeCodigoParaExecutarQuandoTiveresOsMovies: @escaping ([Movie]?)->()){
         let moviesFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
         moviesFetch.predicate = NSPredicate(format: "type == %@", "movie")
         if let searchResults = try? objectContext.fetch(moviesFetch) {
             //I like to check the size of the returned results!
             if !searchResults.isEmpty {
-                pedacoDeCodigoParaExecutarQuandoTiveresOsClientes(searchResults)
+                pedacoDeCodigoParaExecutarQuandoTiveresOsMovies(searchResults)
             }
         }
     }
-    func getSeries(pedacoDeCodigoParaExecutarQuandoTiveresOsClientes: @escaping ([Movie]?)->()){
+    func getSeries(pedacoDeCodigoParaExecutarQuandoTiveresAsSeries: @escaping ([Movie]?)->()){
         let moviesFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
         moviesFetch.predicate = NSPredicate(format: "type == %@", "tv")
         if let searchResults = try? objectContext.fetch(moviesFetch) {
             //I like to check the size of the returned results!
             if !searchResults.isEmpty {
-                pedacoDeCodigoParaExecutarQuandoTiveresOsClientes(searchResults)
+                pedacoDeCodigoParaExecutarQuandoTiveresAsSeries(searchResults)
             }
         }
     }
-    func getUser(pedacoDeCodigoParaExecutarQuandoTiveresOsClientes: @escaping (User?)->()){
+    func getUser(pedacoDeCodigoParaExecutarQuandoTivereUser: @escaping (User?)->()){
         let defaults = UserDefaults.standard
         if (defaults.string(forKey: "userName") != nil) {
             let userFetch : NSFetchRequest<User> = User.fetchRequest()
@@ -58,7 +58,7 @@ class DataStore{
                 //I like to check the size of the returned results!
                 if !searchResults.isEmpty {
                     if let userLogged = searchResults[0] as? User {
-                        pedacoDeCodigoParaExecutarQuandoTiveresOsClientes(userLogged)
+                        pedacoDeCodigoParaExecutarQuandoTivereUser(userLogged)
                     }
 
                     
@@ -66,6 +66,39 @@ class DataStore{
             }
         }
     }
+    func getMoviesUser(pedacoDeCodigoParaExecutarQuandoOUserTivereMovies: @escaping ([Movie]?)->()){
+       
+        DataStore.sharedInstance.getUser { (user) in
+            //uuser = user!
+            let values = user!.movies!;
+            var movies: [Movie] = []
+            for obj in values {
+                if let movie = obj as? Movie {
+                    if (movie.type == "movie") {
+                        print("add")
+                        movies.append(movie)
+                    }
+                }
+            }
+            pedacoDeCodigoParaExecutarQuandoOUserTivereMovies(movies)
+        }
+        
+    }
+    func getSeriesUser(pedacoDeCodigoParaExecutarQuandoOUserTivereSeries: @escaping ([Movie]?)->()){
+        DataStore.sharedInstance.getUser { (user) in
+            let values = user!.movies!;
+            var movies: [Movie] = []
+            for obj in values {
+                if let movie = obj as? Movie {
+                    if (movie.type == "tv") {
+                        movies.append(movie)
+                    }
+                }
+            }
+            pedacoDeCodigoParaExecutarQuandoOUserTivereSeries(movies)
+        }
+    }
+
 
     func removeMovie(object: Movie){
         objectContext.delete(object)
