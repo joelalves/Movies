@@ -14,7 +14,27 @@ class SeriesCollectionViewController: UICollectionViewController {
     
     var user: User?
     var series: [Movie]?
+    let objectContext = CoreDataManager.sharedInstance
+    
+    @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
+        
+        let point = sender.location(in: self.collectionView)
+        if let indexPath = self.collectionView?.indexPathForItem(at: point),
+            let cell = self.collectionView?.cellForItem(at: indexPath) as? SeriesCollectionViewCell,
+            let movie = self.series?[indexPath.row]{
+            cell.shake()
+            let alert = UIAlertController(title: "Hello!", message: "You want to add favorite this \(movie.title!)?", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
+                self.user?.addToMovies(movie)
+                self.objectContext.saveContext()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
 
+    }
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
