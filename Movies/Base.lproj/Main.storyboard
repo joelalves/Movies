@@ -161,6 +161,7 @@
                         <connections>
                             <outlet property="dataSource" destination="drt-0I-2aX" id="tKw-2n-ETt"/>
                             <outlet property="delegate" destination="drt-0I-2aX" id="dhJ-8N-9MT"/>
+                            <outletCollection property="gestureRecognizers" destination="3wK-Bq-PoU" appends="YES" id="8Wf-iX-UtD"/>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="8dN-Oz-RKW"/>

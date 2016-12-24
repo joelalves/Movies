@@ -28,6 +28,8 @@ class MysTableViewController: UITableViewController {
         DataStore.sharedInstance.getUser { (user) in
             self.user = user
         }
+        print("saaaaa")
+        print(self.user?.movies?.count)
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl?.addTarget(self, action: #selector(self.reloadData), for: .valueChanged)
