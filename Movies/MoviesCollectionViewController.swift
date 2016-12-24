@@ -14,6 +14,8 @@ class MoviesCollectionViewController: UICollectionViewController {
     
     var user: User?
     var movies: [Movie]?
+    let objectContext = CoreDataManager.sharedInstance
+    
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
         print("long press")
         let point = sender.location(in: self.collectionView)
@@ -21,11 +23,19 @@ class MoviesCollectionViewController: UICollectionViewController {
             let cell = self.collectionView?.cellForItem(at: indexPath) as? MoviesCollectionViewCell,
             let movie = self.movies?[indexPath.row]{
             cell.shake()
-            let alert = UIAlertController(title: "Oi!", message: "Aqui está o filme \(movie.title)", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Hello!", message: "You want to add favorite this \(movie.title!)?", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
+                self.user?.addToMovies(movie)
+                self.objectContext.saveContext()
+            }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
 
+    }
+    
+    func addMovieToUser(movie:Movie){
+        
     }
  
     override func viewDidLoad() {
