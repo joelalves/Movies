@@ -49,6 +49,24 @@ class DataStore{
             }
         }
     }
+    func getUser(pedacoDeCodigoParaExecutarQuandoTiveresOsClientes: @escaping (User?)->()){
+        let defaults = UserDefaults.standard
+        if (defaults.string(forKey: "userName") != nil) {
+            let userFetch : NSFetchRequest<User> = User.fetchRequest()
+            userFetch.predicate = NSPredicate(format: "nome == %@", defaults.string(forKey: "userName")!)
+            if let searchResults = try? objectContext.fetch(userFetch) {
+                //I like to check the size of the returned results!
+                if !searchResults.isEmpty {
+                    if let userLogged = searchResults[0] as? User {
+                        pedacoDeCodigoParaExecutarQuandoTiveresOsClientes(userLogged)
+                    }
+
+                    
+                }
+            }
+        }
+    }
+
     func removeMovie(object: Movie){
         objectContext.delete(object)
         do {
