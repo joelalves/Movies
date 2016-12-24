@@ -34,10 +34,6 @@ class MoviesCollectionViewController: UICollectionViewController {
 
     }
     
-    func addMovieToUser(movie:Movie){
-        
-    }
- 
     override func viewDidLoad() {
         super.viewDidLoad()
         

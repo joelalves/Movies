@@ -19,7 +19,6 @@ class SectionsData {
         
         var sectionsArray = [Section]()
         
-        
         DataStore.sharedInstance.getMoviesUser { (movies) in
             let movies = Section(title: "Movies", objects: movies!)
             sectionsArray.append(movies)
@@ -28,13 +27,7 @@ class SectionsData {
             let movies = Section(title: "Series", objects: movies!)
             sectionsArray.append(movies)
         }
-       //let movies = Section(title: "Movies", objects: moviesArray)
-       // let series = Section(title: "Series", objects: ["Cars", "Boats", "Planes", "Motorcycles", "Trucks"])
-        
-        
-       //sectionsArray.append(movies)
-       // sectionsArray.append(series)
-        
+    
         return sectionsArray
     }
     
