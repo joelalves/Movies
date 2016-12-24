@@ -304,11 +304,17 @@
                         <connections>
                             <outlet property="dataSource" destination="bft-h8-lXZ" id="MpR-Vw-npK"/>
                             <outlet property="delegate" destination="bft-h8-lXZ" id="DXw-wc-l87"/>
+                            <outletCollection property="gestureRecognizers" destination="Utd-xt-Cna" appends="YES" id="2qt-RI-HWv"/>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="Rg2-IY-djI"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tjH-Zv-heq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Utd-xt-Cna">
+                    <connections>
+                        <action selector="longPress:" destination="bft-h8-lXZ" id="ZuZ-XZ-CVA"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2161" y="660"/>
         </scene>

@@ -17,7 +17,7 @@ class MoviesCollectionViewController: UICollectionViewController {
     let objectContext = CoreDataManager.sharedInstance
     
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
-        print("long press")
+       
         let point = sender.location(in: self.collectionView)
         if let indexPath = self.collectionView?.indexPathForItem(at: point),
             let cell = self.collectionView?.cellForItem(at: indexPath) as? MoviesCollectionViewCell,
