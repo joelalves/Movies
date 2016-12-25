@@ -116,12 +116,23 @@ class MysTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let movie = sections[indexPath.section].items[indexPath.row] as Movie?{
-            OmdbManager.getMovieFullInformation(movie: movie, completion: { (urlValue) in
-                if let url = URL(string: urlValue) {
-                    let safari = SFSafariViewController(url: url)
-                    self.present(safari, animated: true, completion: nil)
-                }
-            })
+            
+            if movie.type! == "movie" {
+                OmdbManager.getMovieFullInformation(movie: movie, completion: { (urlValue) in
+                    if let url = URL(string: urlValue) {
+                        let safari = SFSafariViewController(url: url)
+                        self.present(safari, animated: true, completion: nil)
+                    }
+                })
+            } else {
+                OmdbManager.getSerieFullInformation(movie: movie, completion: { (urlValue) in
+                    if let url = URL(string: urlValue) {
+                        let safari = SFSafariViewController(url: url)
+                        self.present(safari, animated: true, completion: nil)
+                    }
+                })
+            }
+            
         }
     }
     
