@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class MysTableViewController: UITableViewController {
     
@@ -130,14 +131,26 @@ class MysTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let cell = sender as? UITableViewCell,
+            let indexPath = self.tableView.indexPath(for: cell),
+            let movie = self.movies?[indexPath.row] {
+            OmdbManager.getMovieFullInformation(movie: movie, completion: { (urlValue) in
+                if let url = URL(string: urlValue) {
+                    let safari = SFSafariViewController(url: url)
+                    self.present(safari, animated: true, completion: nil)
+                }
+            })
+            
+
+        }
     }
-    */
+    
 
 }

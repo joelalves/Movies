@@ -20,7 +20,6 @@
 		3C420C841E0C3E1400BFEB2C /* MysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C420C831E0C3E1400BFEB2C /* MysTableViewController.swift */; };
 		3C420C861E0C3E9100BFEB2C /* SectionsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C420C851E0C3E9100BFEB2C /* SectionsData.swift */; };
 		3C420C881E0C6FE700BFEB2C /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C420C871E0C6FE700BFEB2C /* DataStore.swift */; };
-		3C4BA8F01E0F4A8C002162B7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BA8EF1E0F4A8C002162B7 /* WebViewController.swift */; };
 		3C756CFF1DDD0EB000E7296C /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C756CF91DDD0EB000E7296C /* User+CoreDataClass.swift */; };
 		3C756D001DDD0EB000E7296C /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C756CFA1DDD0EB000E7296C /* User+CoreDataProperties.swift */; };
 		3C756D011DDD0EB000E7296C /* Movie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C756CFB1DDD0EB000E7296C /* Movie+CoreDataClass.swift */; };
@@ -51,7 +50,6 @@
 		3C420C831E0C3E1400BFEB2C /* MysTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MysTableViewController.swift; sourceTree = "<group>"; };
 		3C420C851E0C3E9100BFEB2C /* SectionsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionsData.swift; sourceTree = "<group>"; };
 		3C420C871E0C6FE700BFEB2C /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		3C4BA8EF1E0F4A8C002162B7 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3C756CF91DDD0EB000E7296C /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "../User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3C756CFA1DDD0EB000E7296C /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3C756CFB1DDD0EB000E7296C /* Movie+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Movie+CoreDataClass.swift"; path = "../Movie+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 				3CE698B21DFB69D10063C313 /* MoviesCollectionViewController.swift */,
 				3CE698B41DFB69E30063C313 /* SeriesCollectionViewController.swift */,
 				3C420C831E0C3E1400BFEB2C /* MysTableViewController.swift */,
-				3C4BA8EF1E0F4A8C002162B7 /* WebViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -255,7 +252,6 @@
 				3CE698CC1DFC4E3C0063C313 /* OmdbManager.swift in Sources */,
 				3C3C958A1E0B47A700AFAD51 /* FanartManager.swift in Sources */,
 				3CE698B71DFB6C070063C313 /* MoviesCollectionViewCell.swift in Sources */,
-				3C4BA8F01E0F4A8C002162B7 /* WebViewController.swift in Sources */,
 				3C420C861E0C3E9100BFEB2C /* SectionsData.swift in Sources */,
 				3C420C881E0C6FE700BFEB2C /* DataStore.swift in Sources */,
 				3C3599AF1DDA68F8004F2093 /* SwiftyJSON.swift in Sources */,

@@ -238,9 +238,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="Sam-aR-6gg" kind="show" trigger="accessoryAction" id="7A9-J5-7fr"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -253,31 +250,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ss3-fM-VTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2191" y="1325"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="5TL-nd-K7v">
-            <objects>
-                <viewController id="Sam-aR-6gg" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ehJ-iq-74E"/>
-                        <viewControllerLayoutGuide type="bottom" id="jmX-ud-mtd"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fWx-W1-v43">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mSv-Xk-uWY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IbY-NC-gkB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2917.5999999999999" y="1325.4872563718143"/>
         </scene>
         <!--Series Collection View Controller-->
         <scene sceneID="Avt-ZF-Us0">
