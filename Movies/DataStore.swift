@@ -120,4 +120,26 @@ class DataStore{
         }
 
     }
+    
+    static func existElement(movieID:String) -> (Bool) {
+        let usersFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
+        do {
+            usersFetch.predicate = NSPredicate(format: "id == %@", movieID)
+            
+            //go get the results
+            if let searchResults = try? CoreDataManager.sharedInstance.managedObjectContext.fetch(usersFetch) {
+                //I like to check the size of the returned results!
+                if searchResults.isEmpty {
+                    print("Cria")
+                    return (true)
+                } else {
+                    print("exist")
+                    return (false)
+                }
+            }
+        } catch {
+            print("Error with request: \(error)")
+        }
+        return (false)
+    }
 }

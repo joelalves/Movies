@@ -31,7 +31,7 @@ class OmdbManager{
                                 dateFormatter.dateFormat = "yyyy-MM-dd"
                                 let date = dateFormatter.date(from:released)
                         
-                            if self.existElement(movieID: id),
+                            if DataStore.existElement(movieID: id),
                                     let movie = CoreDataManager.newObject(entityName: "Movie") as? Movie {
                                     movie.id = id
                                     movie.title = title
@@ -75,7 +75,7 @@ class OmdbManager{
                             dateFormatter.dateFormat = "yyyy-MM-dd"
                             let date = dateFormatter.date(from:released)
                             
-                            if self.existElement(movieID: id),
+                            if DataStore.existElement(movieID: id),
                                 let movie = CoreDataManager.newObject(entityName: "Movie") as? Movie {
                                
                                 movie.id = id
@@ -101,26 +101,23 @@ class OmdbManager{
         
     }
     
-    static func existElement(movieID:String) -> (Bool) {
-        let usersFetch : NSFetchRequest<Movie> = Movie.fetchRequest()
-        do {
-            usersFetch.predicate = NSPredicate(format: "id == %@", movieID)
-            
-            //go get the results
-            if let searchResults = try? CoreDataManager.sharedInstance.managedObjectContext.fetch(usersFetch) {
-                //I like to check the size of the returned results!
-                if searchResults.isEmpty {
-                    print("Cria")
-                    return (true)
-                } else {
-                     print("exist")
-                    return (false)
+    
+    
+    static func getMovieFullInformation(movie: Movie, completion: @escaping (String?)->()) {
+        print("#VamosMovies")
+        if let url = URL(string: "https://api.themoviedb.org/3/movie\(movie.id!)?api_key="+apiKey+"&language=en-US&sort_by=popularity.desc") {
+            let request = URLRequest(url: url)
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let data = data {
+                    let json = JSON(data: data)
+                    if let imdbId = json["imdb_id"].stringValue as? String {
+                        completion("http://www.imdb.com/title/\(imdbId)")
+                    }
+                    CoreDataManager.sharedInstance.saveContext()
                 }
-            }
-        } catch {
-            print("Error with request: \(error)")
+                }.resume()
         }
-        return (false)
+        
     }
 
 }
