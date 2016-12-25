@@ -103,8 +103,8 @@ class OmdbManager{
     
     
     
-    static func getMovieFullInformation(movie: Movie, completion: @escaping (String?)->()) {
-        print("#VamosMovies")
+    static func getMovieFullInformation(movie: Movie, completion: @escaping (String)->()) {
+        print("#getMovieFullInformation")
         if let url = URL(string: "https://api.themoviedb.org/3/movie\(movie.id!)?api_key="+apiKey+"&language=en-US&sort_by=popularity.desc") {
             let request = URLRequest(url: url)
             URLSession.shared.dataTask(with: request) { data, response, error in
@@ -113,9 +113,8 @@ class OmdbManager{
                     if let imdbId = json["imdb_id"].stringValue as? String {
                         completion("http://www.imdb.com/title/\(imdbId)")
                     }
-                    CoreDataManager.sharedInstance.saveContext()
                 }
-                }.resume()
+            }.resume()
         }
         
     }

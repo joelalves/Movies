@@ -10,8 +10,10 @@ import UIKit
 
 class WebViewController: UIViewController {
 
+    var movie: Movie?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
     }
