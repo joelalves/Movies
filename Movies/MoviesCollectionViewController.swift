@@ -15,6 +15,7 @@ class MoviesCollectionViewController: UICollectionViewController {
     var user: User?
     var movies: [Movie]?
     let objectContext = CoreDataManager.sharedInstance
+    var nextPage: Bool = true;
     
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
        
@@ -37,10 +38,7 @@ class MoviesCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        OmdbManager.trendingMovies { () in
-            self.reloadData()
-        }
-        
+       
         DataStore.sharedInstance.getUser { (user) in
             self.user = user
         }
@@ -49,10 +47,9 @@ class MoviesCollectionViewController: UICollectionViewController {
         
         self.collectionView?.refreshControl = UIRefreshControl()
         self.collectionView?.refreshControl?.addTarget(self, action: #selector(self.reloadData), for: .valueChanged)
-        self.reloadData();
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        self.reloadData()
         // Register cell classes
         //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
@@ -69,11 +66,15 @@ class MoviesCollectionViewController: UICollectionViewController {
 
     func reloadData() {
         self.collectionView?.refreshControl?.beginRefreshing()
-        DataStore.sharedInstance.getMovies { (movies) in
-            self.collectionView?.refreshControl?.endRefreshing()
-            self.movies = movies
-            self.collectionView?.reloadData()
+        OmdbManager.trendingMovies { () in
+            DataStore.sharedInstance.getMovies { (movies) in
+                self.collectionView?.refreshControl?.endRefreshing()
+                self.movies = movies
+                self.collectionView?.reloadData()
+                self.nextPage = true
+            }
         }
+        
         
     }
 
@@ -114,9 +115,7 @@ class MoviesCollectionViewController: UICollectionViewController {
             let cell = cell as? MoviesCollectionViewCell{
             cell.prepareForReuse()
             cell.titleLabel.text = movie.title
-            print(movie.id!)
             if movie.id != nil {
-                print("not nil")
                 FanartManager.images(for: movie.id!, completion: { (movieImage) in
                     if let url = URL(string: movieImage.preview) {
                         cell.task = URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
@@ -151,8 +150,11 @@ class MoviesCollectionViewController: UICollectionViewController {
         let contentHeight = scrollView.contentSize.height
         if offsetY > contentHeight - scrollView.frame.size.height {
             //loadSomeDataAndIncreaseDataLengthFunction()
-            //self.reloadData()
-            print("next page")
+            if self.nextPage {
+                self.nextPage = false
+                self.reloadData()
+            }
+            
         }
     }
 

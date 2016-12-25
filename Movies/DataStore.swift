@@ -130,10 +130,8 @@ class DataStore{
             if let searchResults = try? CoreDataManager.sharedInstance.managedObjectContext.fetch(usersFetch) {
                 //I like to check the size of the returned results!
                 if searchResults.isEmpty {
-                    print("Cria")
                     return (true)
                 } else {
-                    print("exist")
                     return (false)
                 }
             }
@@ -142,4 +140,25 @@ class DataStore{
         }
         return (false)
     }
+    
+    static func existUser(username:String) -> (Bool) {
+        let usersFetch : NSFetchRequest<User> = User.fetchRequest()
+        do {
+            usersFetch.predicate = NSPredicate(format: "nome == %@", username)
+            
+            //go get the results
+            if let searchResults = try? CoreDataManager.sharedInstance.managedObjectContext.fetch(usersFetch) {
+                //I like to check the size of the returned results!
+                if !searchResults.isEmpty {
+                    return (true)
+                } else {
+                    return (false)
+                }
+            }
+        } catch {
+            print("Error with request: \(error)")
+        }
+        return (false)
+    }
+
 }

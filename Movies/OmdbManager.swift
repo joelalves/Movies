@@ -9,16 +9,23 @@
 import Foundation
 import CoreData
 class OmdbManager{
+    
     private static let apiKey: String = "12443753391299fdc9235cf835a55188"
+    private static var pagMovies: Int16 = 1
+    private static var pagSeries: Int16 = 1
+    
+    private static var totalPagMovies: Int16 = 1
+    private static var totelPagSeries: Int16 = 1
+    
     
     static func trendingMovies(completion: @escaping ()->()) {
-        print("#VamosMovies")
-        if let url = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key="+apiKey+"&language=en-US&sort_by=popularity.desc") {
+        if let url = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key="+apiKey+"&language=en-US&sort_by=popularity.desc&page=\(self.pagMovies)") {
             let request = URLRequest(url: url)
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let data = data {
                     let json = JSON(data: data)
                     if let movies = json["results"].array?.map({ (item) -> Movie? in
+                        self.totalPagMovies = Int16(json["total_pages"].stringValue)!
                         if let id = item["id"].stringValue as String?,
                             let title = item["original_title"].stringValue as String?,
                             let overview = item["overview"].stringValue as String?,
@@ -46,6 +53,7 @@ class OmdbManager{
                         }
                         return nil
                     }).filter({ $0 != nil }) as? [Movie] {
+                        self.pagMovies = self.totalPagMovies == self.pagMovies ?  1 : self.pagMovies + 1
                         completion()
                     }
                    CoreDataManager.sharedInstance.saveContext()
@@ -56,13 +64,13 @@ class OmdbManager{
     }
     
     static func trendingSeries(completion: @escaping ()->()) {
-        print("#VamosSeries")
-        if let url = URL(string: "https://api.themoviedb.org/3/discover/tv?api_key="+apiKey+"&language=en-US&sort_by=popularity.desc") {
+        if let url = URL(string: "https://api.themoviedb.org/3/discover/tv?api_key="+apiKey+"&language=en-US&sort_by=popularity.desc&page=\(self.pagSeries)") {
             let request = URLRequest(url: url)
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let data = data {
                     let json = JSON(data: data)
                     if let movies = json["results"].array?.map({ (item) -> Movie? in
+                        self.totelPagSeries = Int16(json["total_pages"].stringValue)!
                         if let id = item["id"].stringValue as String?,
                             let title = item["name"].stringValue as String?,
                             let overview = item["overview"].stringValue as String?,
@@ -92,6 +100,7 @@ class OmdbManager{
                         }
                         return nil
                     }).filter({ $0 != nil }) as? [Movie] {
+                        self.pagSeries = self.totelPagSeries == self.pagSeries ? 1 : self.pagSeries + 1
                         completion()
                     }
                     CoreDataManager.sharedInstance.saveContext()
@@ -104,23 +113,30 @@ class OmdbManager{
     
     
     static func getMovieFullInformation(movie: Movie, completion: @escaping (String)->()) {
-        print("#getMovieFullInformation")
-        print(movie.id!)
-        if let url = URL(string: "https://api.themoviedb.org/3/\(movie.type!)/\(movie.id!)?api_key="+apiKey+"&language=en-US&sort_by=popularity.desc") {
-            print(url)
+        if let url = URL(string: "https://api.themoviedb.org/3/movie/\(movie.id!)?api_key="+apiKey+"&language=en-US&sort_by=popularity.desc") {
             let request = URLRequest(url: url)
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let data = data {
                     let json = JSON(data: data)
-                    print("json")
-                    print(json)
                     if let imdbId = json["imdb_id"].stringValue as? String {
                         completion("http://www.imdb.com/title/\(imdbId)")
                     }
                 }
             }.resume()
         }
-        
+    }
+    static func getSerieFullInformation(movie: Movie, completion: @escaping (String)->()) {
+        if let url = URL(string: "https://api.themoviedb.org/3/tv/\(movie.id!)?api_key="+apiKey+"&append_to_response=external_ids") {
+            let request = URLRequest(url: url)
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let data = data {
+                    let json = JSON(data: data)
+                    if let imdbId = json["external_ids"]["imdb_id"].stringValue as? String {
+                        completion("http://www.imdb.com/title/\(imdbId)")
+                    }
+                }
+                }.resume()
+        }
     }
 
 }

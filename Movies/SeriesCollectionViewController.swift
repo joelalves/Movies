@@ -15,6 +15,7 @@ class SeriesCollectionViewController: UICollectionViewController {
     var user: User?
     var series: [Movie]?
     let objectContext = CoreDataManager.sharedInstance
+    var nextPage: Bool = true;
     
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
         
@@ -38,20 +39,15 @@ class SeriesCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        OmdbManager.trendingSeries { () in
-            self.reloadData()
-        }
-        
         DataStore.sharedInstance.getUser { (user) in
             self.user = user
         }
         
         self.collectionView?.refreshControl = UIRefreshControl()
         self.collectionView?.refreshControl?.addTarget(self, action: #selector(self.reloadData), for: .valueChanged)
-        self.reloadData();
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+         self.reloadData()
         // Register cell classes
         //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
@@ -73,12 +69,14 @@ class SeriesCollectionViewController: UICollectionViewController {
     
     func reloadData() {
         self.collectionView?.refreshControl?.beginRefreshing()
-        DataStore.sharedInstance.getSeries { (series) in
-            self.collectionView?.refreshControl?.endRefreshing()
-            self.series = series
-            self.collectionView?.reloadData()
+        OmdbManager.trendingSeries { () in
+            DataStore.sharedInstance.getSeries { (series) in
+                self.collectionView?.refreshControl?.endRefreshing()
+                self.series = series
+                self.collectionView?.reloadData()
+                self.nextPage = true
+            }
         }
-        
     }
 
 
@@ -111,12 +109,9 @@ class SeriesCollectionViewController: UICollectionViewController {
         // Configure the cell
         if let serie = self.series?[indexPath.row],
             let cell = cell as? SeriesCollectionViewCell{
-            print("sasdasdasdadasda");
             cell.prepareForReuse()
             cell.titleLabel.text = serie.title
-            print(serie.id!)
             if serie.id != nil {
-                print("not nil")
                 FanartManager.images(for: serie.id!, completion: { (movieImage) in
                     if let url = URL(string: movieImage.preview) {
                         cell.task = URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
@@ -149,9 +144,11 @@ class SeriesCollectionViewController: UICollectionViewController {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         if offsetY > contentHeight - scrollView.frame.size.height {
-            //loadSomeDataAndIncreaseDataLengthFunction()
-            //self.reloadData()
-            print("next page")
+            if self.nextPage {
+                self.nextPage = false
+                self.reloadData()
+            }
+            
         }
     }
 

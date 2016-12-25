@@ -21,17 +21,20 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         //create user test
-        if let user = CoreDataManager.newObject(entityName: "User") as? User {
+        if DataStore.existUser(username: "joel"),
+            let user = CoreDataManager.newObject(entityName: "User") as? User {
             user.nome = "joel"
             user.numeroCliente = 10
             user.password = "joel"
         }
-        if let user1 = CoreDataManager.newObject(entityName: "User") as? User {
+        if DataStore.existUser(username: "joel1"),
+            let user1 = CoreDataManager.newObject(entityName: "User") as? User {
             user1.nome = "joel1"
             user1.numeroCliente = 11
             user1.password = "joel"
         }
-        if let user2 = CoreDataManager.newObject(entityName: "User") as? User {
+        if DataStore.existUser(username: "joel2"),
+            let user2 = CoreDataManager.newObject(entityName: "User") as? User {
             user2.nome = "joel2"
             user2.numeroCliente = 12
             user2.password = "joel"
@@ -51,16 +54,6 @@ class LoginViewController: UIViewController {
 
         
     }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        print("viewWillLayoutSubviews")
-    }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print("viewDidLayoutSubviews");
-    }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -73,7 +66,6 @@ class LoginViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prepare")
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
@@ -107,10 +99,7 @@ class LoginViewController: UIViewController {
                 //go get the results
                 if let searchResults = try? objectContext.fetch(usersFetch) {
                     //I like to check the size of the returned results!
-                    print ("num of results = \(searchResults)")
                     if !searchResults.isEmpty {
-                        print("Exist")
-                        
                         let userDefaults = Foundation.UserDefaults.standard
                         userDefaults.set( textUser, forKey: "userName")
                         userDefaults.set( textPass, forKey: "userPass")
