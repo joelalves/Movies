@@ -67,7 +67,7 @@ class SeriesCollectionViewController: UICollectionViewController {
         
     }
     
-    func reloadData() {
+    @objc func reloadData() {
         self.collectionView?.refreshControl?.beginRefreshing()
         OmdbManager.trendingSeries { () in
             DataStore.sharedInstance.getSeries { (series) in

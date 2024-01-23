@@ -64,7 +64,7 @@ class MoviesCollectionViewController: UICollectionViewController {
         
     }
 
-    func reloadData() {
+    @objc func reloadData() {
         self.collectionView?.refreshControl?.beginRefreshing()
         OmdbManager.trendingMovies { () in
             DataStore.sharedInstance.getMovies { (movies) in

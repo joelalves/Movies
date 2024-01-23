@@ -80,9 +80,9 @@ class LoginViewController: UIViewController {
  
     func displayAlertMessage(userMessage:String) {
         
-        let alertMessage = UIAlertController(title: "Alert!", message: userMessage, preferredStyle: UIAlertControllerStyle.alert)
+        let alertMessage = UIAlertController(title: "Alert!", message: userMessage, preferredStyle: UIAlertController.Style.alert)
         
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         
         alertMessage.addAction(okAction)
         self.present(alertMessage, animated: true, completion: nil)
