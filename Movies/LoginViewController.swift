@@ -88,11 +88,13 @@ class LoginViewController: UIViewController {
         self.present(alertMessage, animated: true, completion: nil)
         //self.presentViewController(alertMessage, animated: true, completion: nil)
     }
+    
     func auth() -> (Bool, User?){
        
         if let textUser = self.inputTextUser.text,
             let textPass = self.inputTextPass.text{
-            let usersFetch : NSFetchRequest<User> = User.fetchRequest()
+            //let usersFetch : NSFetchRequest<User> = User.fetchRequest()
+            let usersFetch : NSFetchRequest<User> =  NSFetchRequest(entityName: "User")
             do {
                 usersFetch.predicate = NSPredicate(format: "nome == %@ AND password == %@", textUser, textPass)
                 

@@ -25,7 +25,7 @@ class OmdbManager{
                 if let data = data {
                     let json = JSON(data: data)
                     if let movies = json["results"].array?.map({ (item) -> Movie? in
-                        self.totalPagMovies = Int16(json["total_pages"].stringValue)!
+                        self.totalPagMovies = Int16(json["total_pages"].stringValue) ?? 1
                         if let id = item["id"].stringValue as String?,
                             let title = item["original_title"].stringValue as String?,
                             let overview = item["overview"].stringValue as String?,
